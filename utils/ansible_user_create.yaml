@@ -19,11 +19,11 @@
 
   - name: Add ansible user to sudoers
     copy: 
-      dest: "/etc/sudoers.d/{{ ansible_user }}"
+      dest: "/etc/sudoers.ad/{{ ansible_user }}"
       content: "{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL"
 
   - name: Deploy SSH KEY
-    authorized_key: 
+    authorized_key:
       user: "{{ ansible_user }}"
       key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
       state: present
