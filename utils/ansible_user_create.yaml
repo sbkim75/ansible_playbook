@@ -1,0 +1,30 @@
+---
+- hosts: all
+  vars:
+    - ansible_user: 'ansible'
+    - ansible_password: 'P@ssw0rd'
+  gather_facts: no
+  remote_user: ubuntu
+  become: true
+
+  tasks:
+  - name: Add user name ansible
+    user:
+      name: "{{ ansible_user }}"
+      shell: /bin/bash
+      password: "{{ ansible_password }}"
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
+
+  - name: Add ansible user to sudoers
+    copy: 
+      dest: "/etc/sudoers.d/{{ ansible_user }}"
+      content: "{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL"
+
+  - name: Deploy SSH KEY
+    authorized_key: 
+      user: "{{ ansible_user }}"
+      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      state: present
+      
