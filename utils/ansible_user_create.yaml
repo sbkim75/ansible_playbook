@@ -16,7 +16,7 @@
 
   - name: Add ansible user to sudoers
     copy: 
-      dest: "/etc/sudoers.ad/{{ default_user }}"
+      dest: "/etc/sudoers.d/{{ default_user }}"
       content: "{{ default_user }} ALL=(ALL) NOPASSWD: ALL"
 
   - name: Deploy SSH KEY
