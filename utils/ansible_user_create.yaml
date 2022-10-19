@@ -1,30 +1,27 @@
 ---
 - hosts: all
   vars:
-    - ansible_user: 'ansible'
-    - ansible_password: 'P@ssw0rd'
+    - default_user: 'ansible'
+    - default_password: 'P@ssw0rd'
   gather_facts: no
-  remote_user: ubuntu
   become: true
 
   tasks:
   - name: Add user name ansible
     user:
-      name: "{{ ansible_user }}"
-      shell: /bin/bash
-      password: "{{ ansible_password | password_hash('sha512') }}"
+      name: "{{ default_user }}"
+      password: "{{ default_password | password_hash('sha512') }}"
       generate_ssh_key: yes
-      ssh_key_bits: 2048
-      ssh_key_file: .ssh/id_rsa
+      state: present
 
   - name: Add ansible user to sudoers
     copy: 
-      dest: "/etc/sudoers.ad/{{ ansible_user }}"
-      content: "{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL"
+      dest: "/etc/sudoers.ad/{{ default_user }}"
+      content: "{{ default_user }} ALL=(ALL) NOPASSWD: ALL"
 
   - name: Deploy SSH KEY
     authorized_key:
-      user: "{{ ansible_user }}"
+      user: "{{ default_user }}"
       key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
       state: present
       
