@@ -1,0 +1,189 @@
+- name: "Check : local iso package"
+  debug:
+    msg: "Please Check "
+
+- name: "SELINUX Disable"
+  lineinfile:
+    path: /etc/selinux/config
+    state: present
+    regexp: '^SELINUX='
+    line: 'SELINUX=disabled'
+  tags: selinux_diable
+
+- name: "setenforce 0"
+  shell: |
+    setenforce 0
+  ignore_errors: true
+  tags: selinux_diable
+
+- name: "firewalld disable"
+  service:
+    name: firewalld
+    state: stopped
+    enabled: false
+  tags: firewalld_diable
+
+- name: "/etc/systemd/journald.conf config"
+  lineinfile:
+    path: /etc/systemd/journald.conf
+    line: '{{ item }}'
+    state: present
+  with_items:
+    - '### User Config ###'
+    - 'Storage=persistent'
+    - 'SystemMaxFileSize=2G'
+    - 'SystemMaxFiles=500'
+    - '###############################################'
+  tags: journald_config
+
+- name: "systemd-journald.service restart"
+  service:
+    name: systemd-journald.service
+    state: restarted
+  tags: journald_config
+
+- name: "rhel82_iso.repo file copy"
+  copy:
+    src: rhel82_iso.repo
+    dest: /etc/yum.repos.d/
+    mode: '0644'
+    owner: root
+    group: root 
+  tags: rhel_repository
+
+- name: "dnf repository clean & repolist"
+  shell: |
+    dnf clean all
+    dnf repolist
+  tags: rhel_repository
+
+- name: "install additional package"
+  dnf:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - bash-completion
+    - network-scripts
+    - net-tools
+    - sysfsutils
+    - nfs-utils
+    - traceroute
+    - bind-libs
+    - psmisc
+    - sysstat
+    - lsof
+    - sos
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+    - gcc-c++
+    - tcpdump
+    - dstat
+    - nc
+    - glibc-langpack-ko
+    - chrony
+    - cockpit
+
+- name: "/etc/sysctl.conf"
+  lineinfile:
+    path: /etc/sysctl.conf
+    state: present
+    insertafter: 'EOF'
+    line: '{{ item }}'
+  with_items:
+    - '### User Config ###'
+    - 'kernel.panic_on_unrecovered_nmi = 1'
+    - 'kernel.unknown_nmi_panic = 1'
+    - 'kernel.hung_task_timeout_secs = 600'
+    - 'kernel.sysrq = 1'
+    - 'vm.swappiness = 5'
+    - '###############################################'
+
+- name: "/etc/security/limits.conf : delete 기존 설정"
+  lineinfile:
+    path: /etc/security/limits.conf
+    state: absent
+    regexp: '^\* '
+
+- name: "/etc/security/limits.conf"
+  lineinfile:
+    path: /etc/security/limits.conf
+    state: present
+    insertafter: 'EOF'
+    line: '{{ item }}'
+  with_items:
+    - '### User Config ###'
+    - '*	soft	nproc	16384'
+    - '*	hard	nproc	16384'
+    - '*	soft	nofile	8000'
+    - '*	hard	nofile	65536'
+    - '*	soft	stack	10240'
+    - '*	hard	stack	32768'
+    - '*	soft	core	unlimited'
+    - '*	hard	core	unlimited'
+    - '#########################'
+  tags: limits_config
+
+- name: "/etc/ssh/sshd_config : delete sftp"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: absent
+    regexp: 'sftp-server'
+  tags: sshd_config
+
+- name: "sftp enable"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    insertafter: '# override default of no subsystems'
+    line: 'Subsystem       sftp    /usr/libexec/openssh/sftp-server'
+  tags: sshd_config
+
+- name: "sshd config : delete PermitRootLogin"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: absent
+    regexp: '^PermitRootLogin'
+  tags: sshd_config
+
+- name: "sshd config : PermitRootLogin no"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    insertafter: '^#LoginGraceTime'
+    line: 'PermitRootLogin no'
+  tags: sshd_config
+
+- name: "sshd config : delete UseDNS"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: absent
+    regexp: '^#UseDNS'
+  tags: sshd_config  
+
+- name: "sshd config : UseDNS no"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    insertafter: '^#ClientAliveCountMax'
+    line: 'UseDNS no'
+  tags: sshd_config
+
+- name: "sshd servie restart"
+  service:
+    name: sshd.service
+    state: restarted
+  tags: sshd_config
+
+- name: "/etc/bashrc : PS1 modify"
+  copy:
+    src: etc_bashrc
+    dest: /etc/bashrc
+    mode: '0644'
+    owner: root
+    group: root 
+
+- name: "cockpit servie start/enable"
+  service:
+    name: cockpit.socket
+    state: started
+    enabled: yes

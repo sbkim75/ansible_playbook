@@ -1,0 +1,15 @@
+[RHEL82-BaseOS]
+name=RHEL82-BaseOS
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+baseurl=file:///rhel82_iso/BaseOS/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[RHEL82-AppStream]
+name=RHEL82-AppStream
+metadata_expire=-1
+gpgcheck=1
+enabled=1
+baseurl=file:///rhel82_iso/AppStream/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
