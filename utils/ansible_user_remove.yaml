@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars:
+    - default_user: 'ansible'
+  gather_facts: no
+  become: true
+
+  tasks:
+  - name: Remove user ansible
+    user:
+      name: "{{ default_user }}"
+      state: absent
+      remove: yes
