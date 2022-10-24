@@ -1,0 +1,559 @@
+- name: "SRV-026 : root 계정 원격 접속 제한 미비: /etc/ssh/sshd_config"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: '^PermitRootLogin'
+    line: '{{ item }}'
+  with_items:
+    - 'PermitRootLogin no'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")    
+  ignore_errors: true  
+  tags: SRV-026
+
+- name: "SRV-028 : 5.3.2.19 원격 터미널 접속 타임아웃 설정 미흡: /etc/profile"
+  lineinfile:
+    path: /etc/csh.login
+    state: present
+    line: '{{ item }}'
+  with_items:
+    - '# User Define'
+    - 'umask 022'
+    - 'export TMOUT=300'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-028
+
+- name: "SRV-028 : 5.3.2.19 원격 터미널 접속 타임아웃 설정 미흡: /etc/csh.login"
+  lineinfile:
+    path: /etc/csh.login
+    state: present
+    line: '{{ item }}'
+  with_items:
+    - '# User Define'
+    - 'set autologout=15'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-028
+
+- name: "SRV-028 : 5.3.2.19 원격 터미널 접속 타임아웃 설정 미흡: /etc/csh.cshrc"
+  lineinfile:
+    path: /etc/csh.cshrc
+    state: present
+    line: '{{ item }}'
+  with_items:
+    - '# User Define'
+    - 'set autologout=15'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-028
+
+- name: "SVR-069 비밀번호 관리정책 설정 미비: /etc/pam.d/passwd"
+  copy:
+    src: etc_pam.d_passwd
+    dest: /etc/pam.d/passwd
+    mode: '0644'
+    owner: root
+    group: root 
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-069
+
+- name: "SVR-069 비밀번호 관리정책 설정 미비: /etc/pam.d/system-auth"
+  copy:
+    src: etc_pam.d_system-auth
+    dest: /etc/pam.d/system-auth
+    mode: '0644'
+    owner: root
+    group: root 
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-069
+
+- name: "SVR-069 비밀번호 관리정책 설정 미비: /etc/pam.d/password-auth"
+  copy:
+    src: etc_pam.d_password-auth
+    dest: /etc/pam.d/password-auth
+    mode: '0644'
+    owner: root
+    group: root 
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-069
+
+- name: "SVR-069 비밀번호 관리정책 설정 미비: /etc/security/pwquality.conf"
+  copy:
+    src: etc_security_pwquality.conf
+    dest: /etc/security/pwquality.conf
+    mode: '0644'
+    owner: root
+    group: root 
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-069
+
+- name: "SVR-069 비밀번호 관리정책 설정 미비: /etc/login.defs"
+  copy:
+    src: etc_login.defs
+    dest: /etc/login.defs
+    mode: '0644'
+    owner: root
+    group: root 
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-069
+
+- name: "SRV-074 불필요하거나 관리되지 않는 계정 존재: 계정만료일 설정"
+  shell: |
+    for user in $(cat /etc/shadow | grep -Ev '\!|\*' | awk -F: '{print $1}')
+    do
+      shell=`cat /etc/passwd | grep "$user" | awk -F: '{print $7}'`
+      if [ "$shell" != "/sbin/nologin|/bin/false" ]
+      then
+        echo "chage -M 90 -m 1 -W 7 -d $(date '+%Y-%m-%d') -I 10 $user"|sh -x
+      fi
+    done
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-074
+
+- name: "SRV-074 불필요하거나 관리되지 않는 계정 존재: lastlog user 일괄접속"
+  shell: |
+    for user in $(cat /etc/shadow | grep -Ev '\!|\*' | awk -F: '{print $1}'|grep -v root)
+    do
+    sudo su - $user << EOF
+    lastlog -u $user
+    EOF
+    done
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")  
+  ignore_errors: true    
+  tags: SRV-074
+    
+- name: "SRV-081: Crontab 설정파일 권한 설정 미흡 : File o-rwx"
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: o-rwx
+    state: file
+  with_items:
+    - '/etc/crontab'
+    - '/etc/anacrontab'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-081
+
+- name: "SRV-081: Crontab 설정파일 권한 설정 미흡 : Directory o-rwx "
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: o-rwx
+    state: directory
+    recurse: yes
+  with_items:
+    - '/etc/cron.d'
+    - '/etc/cron.daily'
+    - '/etc/cron.hourly'
+    - '/etc/cron.monthly'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-081
+
+- name: "SRV-081: Crontab 설정파일 권한 설정 미흡: create /etc/cron.allow, /etc/cron.deny"
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: '0600'
+    state: touch
+  with_items:
+    - '/etc/cron.allow'
+    - '/etc/cron.deny'
+    - '/etc/at.allow'
+    - '/etc/at.deny'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-081
+
+- name: "SRV-081: Crontab 설정파일 권한 설정 미흡: cron.allow"
+  lineinfile:
+    path: /etc/cron.allow
+    state: present
+    line: '{{ item }}'
+  with_items:
+    - 'root'
+    - 'auditor'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-081
+
+- name: "SRV-081: Crontab 설정파일 권한 설정 미흡: cron.deny"
+  lineinfile:
+    path: /etc/cron.deny
+    state: present
+    line: '{{ item }}'
+  with_items:
+    - 'tcpdump'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-081
+
+- name: "SRV-081: Crontab 설정파일 권한 설정 미흡: /etc/cron.d/, /var/spool/cron/crontab/ 하위 o-rwx"
+  file:
+    path: '{{ item }}'
+    mode: o-rwx
+    recurse: true
+  with_items:
+    - '/etc/cron.d/'
+    - '/var/spool/cron/crontab/'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-081
+
+- name: "SRV-082: 시스템 주요 디렉터리 권한 설정 미흡: chown root:root"
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    state: directory
+  with_items:
+    - '/usr'
+    - '/bin'
+    - '/etc'
+    - '/sbin'
+    - '/var'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-082
+
+- name: "SRV-084: 시스템 주요 파일 권한 설정 미흡 : chmod 644"
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: '0644'
+    state: file
+  with_items:
+    - '/etc/hosts'
+    - '/etc/passwd'
+    - '/etc/services'
+    - '/etc/rsyslog.conf'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-084
+
+- name: "SRV-084: 시스템 주요 파일 권한 설정 미흡 : chmod 640 /etc/at.allow, at.deny"
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: '0600'
+  with_items:
+    - '/etc/at.allow'
+    - '/etc/at.deny'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-084
+
+- name: "SRV-084: 시스템 주요 파일 권한 설정 미흡 : chmod 600 /etc/shadow"
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: '0600'
+    state: file
+  with_items:
+    - '/etc/shadow'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-084
+
+- name: "SRV-084: 시스템 주요 파일 권한 설정 미흡 : /etc/xinetd/* 600"
+  file:
+    path: '{{ item }}'
+    mode: '0600'
+    recurse: true
+  with_items:
+    - '/etc/xinetd/'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-084
+
+- name: "SRV-087: C컴파일러 존재 및 권한 설정 미흡 : add gccgrp"
+  group:
+    name: gccgrp
+    gid: 2000
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-087
+
+- name: "SRV-087: C컴파일러 존재 및 권한 설정 미흡 : chmod 750 /usr/bin/gcc"
+  file:
+    path: /usr/bin/gcc
+    owner: root
+    group: gccgrp
+    mode: '0750'
+    state: file
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-087
+
+- name: "SRV-087: C컴파일러 존재 및 권한 설정 미흡 : auditor add gccgrp"
+  user:
+    name: auditor
+    uid: 3001
+    group: kbagrp
+    groups: wheel,gccgrp
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-087
+
+- name: "SRV-091: 5.3.2.43 불필요하게 SUID, SGID bit가 설정된 파일 존재"
+  file:
+    path: '{{ item }}'
+    owner: root
+    group: root
+    mode: u-s,g-s,u-t
+    state: file
+  with_items:
+    - '/sbin/dump'
+    - '/usr/bin/lpq-lpd'
+    - '/usr/bin/newgrp'
+    - '/sbin/restore'
+    - '/usr/bin/lpr'
+    - '/usr/sbin/lpc'
+    - '/sbin/unix_chkpwd'
+    - '/usr/bin/lpr-lpd'
+    - '/usr/sbin/lpc-lpd'
+    - '/usr/bin/at'
+    - '/usr/bin/lprm'
+    - '/usr/sbin/traceroute'
+    - '/usr/bin/lpq'
+    - '/usr/bin/lprm-lpd'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true    
+  tags: SRV-091
+
+- name: "SRV-092: 사용자 홈 디렉터리 설정 미흡 : script 수행"
+  shell: |
+    cat /etc/passwd |egrep -v "nologin"|egrep -e '/bin/..sh' |awk -F ':' '{print $6}'|xargs chmod o-rwx
+  ignore_errors: true
+  tags: SRV-092
+
+- name: "SRV-092: 사용자 홈 디렉터리 설정 미흡 : /opt/nfast 예외적용"
+  shell: |
+    chmod 0755 /opt/nfast
+  ignore_errors: true
+  tags: SRV-092
+
+- name: "SRV-095: 존재하지 않는 소유자 및 그룹 권한을 가진 파일 또는 디렉터리 존재 : script 수행"
+  shell: |
+    find '{{ item }}' -ls | awk '{print $5 " => " $11}' | egrep -v -i "(^[a-z])" |awk '{print "rm -f "$3}'|sh -x 
+  with_items:
+    - '/etc'
+    - '/var'
+    - '/tmp'
+    - '/home'
+    - '/export'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-095
+
+- name: "SRV-096: 사용자 환경파일의 소유자 또는 권한 설정 미흡 : script 수행"
+  shell: |
+    HOMEDIRS=`cat /etc/passwd |egrep -v "nologin"|egrep -e '/bin/..sh' |awk -F ':' '{print $6}'`
+    FILES=".profile .cshrc .kshrc .login .bash_profile .bashrc .bash_login .exrc .netrc .history .sh_history .bash_history .dtprofile"
+    for dir in $HOMEDIRS
+    do
+      for file in $FILES
+      do
+        FILE=$dir/$file
+        if [ -f $FILE ]
+        then
+          chmod o-rwx $FILE
+        fi
+      done
+    done
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-096
+
+- name: "SRV-108: 로그에 대한 접근통제 및 관리 미흡 : chmod 644 /var/log"
+  shell: |
+    find /var/log -type f -exec chmod 644 {} \;
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-108
+
+- name: "SRV-109: 시스템 주요 이벤트 로그 설정 미흡: /etc/rsyslog.conf"
+  copy:
+    src: etc_rsyslog.conf
+    dest: /etc/rsyslog.conf
+    mode: '0644'
+    owner: root
+    group: root 
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-109    
+
+- name: "SRV-122: UMASK 설정 미흡: /etc/profile"
+  lineinfile:
+    path: /etc/profile
+    state: present
+    line: '{{ item }}'
+  with_items:
+    - '# User Define'
+    - 'umask 022'
+    - 'export TMOUT=300'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-122    
+
+- name: "SRV-131: SU 명령 사용가능 그룹 제한 미비: /etc/pam.d/su"
+  copy:
+    src: etc_pam.d_su
+    dest: /etc/pam.d/su
+    mode: '0644'
+    owner: root
+    group: root 
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-131
+
+- name: "SRV-131: SU 명령 사용가능 그룹 제한 미비: /usr/bin/su"
+  file:
+    path: '/usr/bin/su'
+    owner: root
+    group: wheel
+    mode: '4750'
+    state: file
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-131
+
+- name: "SRV-163: 시스템 사용 주의사항 미출력: /etc/motd, /etc/issue.net"
+  copy:
+    src: etc_motd
+    dest: '{{ item }}'
+    mode: '0644'
+    owner: root
+    group: root 
+  with_items: 
+    - '/etc/motd'
+    - '/etc/issue.net'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-163
+
+- name: "SRV-163: 시스템 사용 주의사항 미출력: /etc/ssh/sshd_config"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: '^#Banner'
+    line: 'Banner /etc/motd'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
+  ignore_errors: true
+  tags: SRV-163
+
+- name: "sshd servie restart"
+  service:
+    name: sshd.service
+    state: restarted
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")   
+  ignore_errors: true
+  tags: SRV-163
+
+- name: "SRV-164: 구성원이 존재하지 않는 GID 존재 : games 그룹삭제"
+  group:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+    - 'games'
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")  
+  ignore_errors: true
+  tags: SRV-164
+
+- name: "SRV-164: 구성원이 존재하지 않는 GID 존재 : group 삭제 후 group 할당 파일 확인"
+  shell: |
+    find / -path /proc* -prune -o -group 20 -exec chown root:root {} \;
+  with_items:
+    - '20' # games gid
+  when:
+    - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
+    - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")  
+  ignore_errors: true
+  tags: SRV-164
