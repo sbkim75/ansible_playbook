@@ -1,0 +1,4 @@
+- name: "nmon cronjob remove"
+  file:
+    path: /etc/cron.d/nmon_daily
+    state: absent

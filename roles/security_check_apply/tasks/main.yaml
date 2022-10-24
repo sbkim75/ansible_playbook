@@ -210,7 +210,7 @@
     line: '{{ item }}'
   with_items:
     - 'root'
-    - 'auditor'
+    - 'ansible'
   when:
     - (ansible_distribution == "RedHat") or (ansible_distribution == "CentOS")
     - (ansible_distribution_major_version == "7") or (ansible_distribution_major_version == "8")
@@ -346,9 +346,9 @@
   ignore_errors: true
   tags: SRV-087
 
-- name: "SRV-087: C컴파일러 존재 및 권한 설정 미흡 : auditor add gccgrp"
+- name: "SRV-087: C컴파일러 존재 및 권한 설정 미흡 : ansible add gccgrp"
   user:
-    name: auditor
+    name: ansible
     uid: 3001
     group: kbagrp
     groups: wheel,gccgrp

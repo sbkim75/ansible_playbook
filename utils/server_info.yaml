@@ -1,0 +1,70 @@
+---
+- hosts: all
+  tasks:
+    - name: "100G Disk Count"
+      shell: lsblk |grep ^sd|awk '{print $4}'|sort -n|grep "100G"|wc -l
+      register : server_disk_count_100G
+
+    - name: "500G Disk Count"
+      shell: lsblk |grep ^sd|awk '{print $4}'|sort -n|grep "500G"|wc -l
+      register : server_disk_count_500G
+
+    - name: "Variable Setting"
+      set_fact: 
+        server_hostname: "{{ ansible_hostname }}"
+        server_ip: "{{ ansible_default_ipv4.address }}"
+        server_core: "{{ ansible_processor_vcpus }}"
+        server_memory: "{{ ansible_memtotal_mb }}"
+        server_disk_count_100G: "{{ server_disk_count_100G.stdout }}"
+        server_disk_count_500G: "{{ server_disk_count_500G.stdout }}"
+        server_os_family: "{{ ansible_os_family }}"
+        server_os_version: "{{ ansible_distribution_version }}"
+        server_product: "{{ ansible_product_name }}"
+
+    - name: "Server Info Print"
+      vars:
+        msg: |
+          server_hostname : {{ server_hostname }}
+          server_ip : {{ server_ip }}
+          server_core : {{ server_core }}
+          server_memory : {{ server_memory }}
+          server_disk_count_100G : {{ server_disk_count_100G }}
+          server_disk_count_500G : {{ server_disk_count_500G }}
+          server_os_family : {{ server_os_family }}
+          server_os_version : {{ server_os_version }}
+          server_product : {{ server_product }}
+      debug :
+        msg : "{{msg.split('\n')}}"           
+
+### Write to File Server Info 
+### hostname, ipaddress, core, memroy, Disk_100G, Disk_500G, OS, OS_version, product
+    - name: "write to file server info"
+      copy:
+        dest: "{{ '/tmp/' + ansible_hostname +'_server_info.txt' }}"
+        content: >+
+          {{ 
+          server_hostname|string + ',' + 
+          server_ip|string + ',' + 
+          server_core|string + ',' + 
+          server_memory|string + ',' + 
+          server_disk_count_100G|string + ',' + 
+          server_disk_count_500G|string + ',' + 
+          server_os_family|string + ',' + 
+          server_os_version|string + ',' + 
+          server_product|string
+           }}
+
+    - name: "Fetch to Local"
+      fetch:
+        src: "{{ '/tmp/' + ansible_hostname +'_server_info.txt' }}"
+        flat: yes
+        dest: /mnt/c/server_info/
+    
+    - name: "Merge local Files"
+      run_once: yes
+      delegate_to: localhost
+      shell: |
+        rm -f /mnt/c/server_info/server_info.csv
+        cat /mnt/c/server_info/*_server_info.txt >> /mnt/c/server_info/server_info.csv
+        sed -i '/^$/d' /mnt/c/server_info/server_info.csv
+        rm -f /mnt/c/server_info/*.txt

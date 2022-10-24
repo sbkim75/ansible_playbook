@@ -1,0 +1,96 @@
+---
+- hosts: all
+  tasks:
+    - name: "/etc/chrony.conf : delete server"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: absent
+        regexp: '^server'  
+
+    - name: "/etc/chrony.conf : delete server"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: absent
+        regexp: '^#pool'
+
+    - name: "/etc/chrony.conf : delete server"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: absent
+        regexp: '^#server'
+
+    - name: "/etc/chrony.conf : delete server"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: absent
+        regexp: '^###'
+
+    - name: "/etc/chrony.conf : add NTP server for CDC DEV"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: present
+        insertafter: '^# Please consider'
+        line: '{{ item }}'
+      with_items:
+        - 'server 10.136.225.31 iburst'
+        - 'server 10.137.225.31 prefer iburst'
+        - '### KB NTP Server ###'
+      when:
+        - ansible_hostname | regex_search("^(d|t|u)c(.*)")
+
+    - name: "/etc/chrony.conf : add NTP server for CDC PRD"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: present
+        insertafter: '^# Please consider'
+        line: '{{ item }}'
+      with_items:
+        - 'server 10.136.225.31 prefer iburst'
+        - 'server 10.137.225.31 iburst'
+        - '### KB NTP Server ###'
+      when:
+        - ansible_hostname | regex_search("^(p)c(.*)")
+
+    - name: "/etc/chrony.conf : add NTP server for DEVINT"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: present
+        insertafter: '^# Please consider'
+        line: '{{ item }}'
+      with_items:
+        - 'server 10.238.135.254 prefer iburst'
+        - 'server 10.236.137.254 iburst'
+        - '### KB NTP Server ###'
+      when:
+        - ansible_hostname | regex_search("^(d|t|u)(h|v)(.*)")
+
+    - name: "/etc/chrony.conf : add NTP server for PRDINT"
+      lineinfile:
+        path: /etc/chrony.conf
+        state: present
+        insertafter: '^# Please consider'
+        line: '{{ item }}'
+      with_items:
+        - 'server 10.238.135.254 iburst'
+        - 'server 10.236.137.254 prefer iburst'
+        - '### KB NTP Server ###'
+      when:
+        - ansible_hostname | regex_search("^(p)(h|b)(.*)")
+
+    - name: "chronyd servie restart"
+      service:
+        name: chronyd
+        state: restarted
+
+    - name: wait for time sync
+      wait_for: 
+        timeout: 5
+
+    - name: "timedatectl check syncronized"
+      shell: |
+        timedatectl  |grep "System clock synchronized"
+      register: TIME_SYNC
+  
+    - name: "Print TIME_SYNC"
+      debug:
+        msg: "{{ TIME_SYNC.stdout }}"

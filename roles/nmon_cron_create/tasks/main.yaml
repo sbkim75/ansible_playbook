@@ -1,0 +1,32 @@
+- name: "nmon binary upload"
+  copy:
+    src: nmon
+    dest: /usr/bin/nmon
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: "/hw Directory Create"
+  file:
+    path: /hw
+    owner: root
+    group: root
+    mode: '0700'
+    state: directory
+
+- name: "nmon.sh upload to /hw"
+  copy:
+    src: nmon.sh
+    dest: /hw
+    mode: '0700'
+    owner: root
+    group: root 
+
+- name: "cron add nmon.sh"
+  cron:
+    name: "nmon daily monitoring"
+    minute: "01"
+    hour: "0"
+    user: root
+    job: "/hw/nmon.sh"
+    cron_file: "nmon_daily"

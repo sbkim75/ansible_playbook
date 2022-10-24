@@ -1,0 +1,2320 @@
+# group create
+- name: add group "kbagrp"
+  group: 
+    name: kbagrp 
+    gid: 3000 
+    state: present
+  tags: auditor, kiwi
+
+- name: add group "zenius"
+  group: 
+    name: zenius 
+    gid: 3100 
+    state: present
+  tags: zenius
+
+- name: add group "appgrp"
+  group: 
+    name: appgrp 
+    gid: 4000 
+    state: present
+  tags: api, dapi, deai, dfep, dksign, dmci, dndm, drclips, dubiform, dwebtop, eai, ecmusr, eims, fep, igagent, ksign, mci, ndm, rclips, ubiform, webtop, x8byte, docradm, ocradm, decmusr, tstream, intfadm, deaiagnt, eaiagnt, itsmadm, jobmind, djobmind, tjobmind, dumsadm, umsadm, dkms, datagen, msgadm, demladm, emladm, dsatadm, satadm, ecross, nfcadm, rsup, dfsbadm, fsbadm, appsuit, didrecog, idrecog, dtchadm, tchadm, dxc30, xc30
+
+- name: add group "gateway"
+  group: 
+    name: gateway 
+    gid: 4050 
+    state: present
+  tags: gateway
+
+- name: add group "layer7"
+  group: 
+    name: layer7 
+    gid: 4051 
+    state: present
+  tags: layer7
+
+- name: add group "interezen"
+  group: 
+    name: interezen 
+    gid: 4052 
+    state: present
+  tags: interezen
+
+- name: add group "koryo"
+  group: 
+    name: koryo 
+    gid: 4053 
+    state: present
+  tags: koryo
+
+- name: add group "nfast"
+  group: 
+    name: nfast 
+    gid: 4060 
+    state: present
+  tags: nfast
+
+- name: add group "bigeye"
+  group: 
+    name: bigeye 
+    gid: 4100 
+    state: present
+  tags: bigeye
+
+- name: add group "dbagrp"
+  group: 
+    name: dbagrp 
+    gid: 5000 
+    state: present
+  tags: dbadm, dbgrid, dbsec, ddbsec, xladm, dtsadm, spmon, tsadm, mysql, e2eadm
+
+- name: add group "postgres"
+  group: 
+    name: postgres 
+    gid: 5006 
+    state: present
+  tags: postgres, kms, dpostgres
+
+- name: add group "enterprisedb"
+  group: 
+    name: enterprisedb 
+    gid: 5100
+    state: present
+  tags: enterprisedb
+
+- name: add group "wasgrp"
+  group: 
+    name: wasgrp 
+    gid: 6000
+    state: present
+  tags: dwasadm, dwebadm, wasadm, webadm, dfwkadm, fwkadm, proworks, dnaon, naon, asta, ecams, erwin, smeta, sdq, sfwas, ecmadm, apmadm, drteadm, rteadm, e2eadm
+
+- name: add group "secgrp"
+  group: 
+    name: secgrp 
+    gid: 7000
+    state: present
+  tags: search, easycerti, docusec, sgadmin, pmwas, svrfilter
+
+- name: add group "ccagrp"
+  group: 
+    name: ccagrp 
+    gid: 10100
+    state: present
+  tags: ccausr
+
+- name: add group "ccbgrp"
+  group: 
+    name: ccbgrp 
+    gid: 10200
+    state: present
+  tags: ccbusr
+
+- name: add group "cccgrp"
+  group: 
+    name: cccgrp 
+    gid: 10300
+    state: present
+  tags: cccusr
+
+- name: add group "coagrp"
+  group: 
+    name: coagrp 
+    gid: 10400
+    state: present
+  tags: coausr
+
+- name: add group "cobgrp"
+  group: 
+    name: cobgrp 
+    gid: 10500
+    state: present
+  tags: cobusr
+
+- name: add group "cocgrp"
+  group: 
+    name: cocgrp 
+    gid: 10600
+    state: present
+  tags: cocusr
+
+- name: add group "csagrp"
+  group: 
+    name: csagrp 
+    gid: 10700
+    state: present
+  tags: csausr
+
+- name: add group "hpagrp"
+  group: 
+    name: hpagrp 
+    gid: 10800
+    state: present
+  tags: hpausr
+
+- name: add group "hpbgrp"
+  group: 
+    name: hpbgrp 
+    gid: 10900
+    state: present
+  tags: hpbusr
+
+- name: add group "hragrp"
+  group: 
+    name: hragrp 
+    gid: 11000
+    state: present
+  tags: hrausr
+
+- name: add group "hrbgrp"
+  group: 
+    name: hrbgrp 
+    gid: 11100
+    state: present
+  tags: hrbusr
+
+- name: add group "hrcgrp"
+  group: 
+    name: hrcgrp 
+    gid: 11200
+    state: present
+  tags: hrcusr
+
+- name: add group "bcagrp"
+  group: 
+    name: bcagrp 
+    gid: 11300
+    state: present
+  tags: bcausr
+
+- name: add group "bcbgrp"
+  group: 
+    name: bcbgrp 
+    gid: 11400
+    state: present
+  tags: bcbusr
+
+- name: add group "bccgrp"
+  group: 
+    name: bccgrp 
+    gid: 11500
+    state: present
+  tags: bccusr
+
+- name: add group "bcdgrp"
+  group: 
+    name: bcdgrp 
+    gid: 11600
+    state: present
+  tags: bcdusr
+
+- name: add group "bcegrp"
+  group: 
+    name: bcegrp 
+    gid: 11700
+    state: present
+  tags: bceusr
+
+- name: add group "bcfgrp"
+  group: 
+    name: bcfgrp 
+    gid: 11800
+    state: present
+  tags: bcfusr
+
+- name: add group "bcggrp"
+  group: 
+    name: bcggrp 
+    gid: 11900
+    state: present
+  tags: bcgusr
+
+- name: add group "bchgrp"
+  group: 
+    name: bchgrp 
+    gid: 12000
+    state: present
+  tags: bchusr
+
+- name: add group "bcigrp"
+  group: 
+    name: bcigrp 
+    gid: 12100
+    state: present
+  tags: bciusr
+
+- name: add group "bcjgrp"
+  group: 
+    name: bcjgrp 
+    gid: 12200
+    state: present
+  tags: bcjusr
+
+- name: add group "idagrp"
+  group: 
+    name: idagrp 
+    gid: 12300
+    state: present
+  tags: idausr
+
+- name: add group "idbgrp"
+  group: 
+    name: idbgrp 
+    gid: 12400
+    state: present
+  tags: idbusr
+
+- name: add group "idcgrp"
+  group: 
+    name: idcgrp 
+    gid: 12500
+    state: present
+  tags: idcusr
+
+- name: add group "iddgrp"
+  group: 
+    name: iddgrp 
+    gid: 12600
+    state: present
+  tags: iddusr
+
+- name: add group "idegrp"
+  group: 
+    name: idegrp 
+    gid: 12700
+    state: present
+  tags: ideusr
+
+- name: add group "idfgrp"
+  group: 
+    name: idfgrp 
+    gid: 12800
+    state: present
+  tags: idfusr
+
+- name: add group "iiagrp"
+  group: 
+    name: iiagrp 
+    gid: 12900
+    state: present
+  tags: iiausr
+
+- name: add group "iibgrp"
+  group: 
+    name: iibgrp 
+    gid: 13000
+    state: present
+  tags: iibusr
+
+- name: add group "iicgrp"
+  group: 
+    name: iicgrp 
+    gid: 13100
+    state: present
+  tags: iicusr
+
+- name: add group "mbagrp"
+  group: 
+    name: mbagrp 
+    gid: 13200
+    state: present
+  tags: mbausr
+  
+- name: add group "mbbgrp"
+  group: 
+    name: mbbgrp 
+    gid: 13300
+    state: present
+  tags: mbbusr
+
+- name: add group "mbcgrp"
+  group: 
+    name: mbcgrp 
+    gid: 13400
+    state: present
+  tags: mbcusr
+
+- name: add group "mragrp"
+  group: 
+    name: mragrp 
+    gid: 13500
+    state: present
+  tags: mrausr
+
+- name: add group "mrbgrp"
+  group: 
+    name: mrbgrp 
+    gid: 13600
+    state: present
+  tags: mrbusr
+
+- name: add group "mcagrp"
+  group: 
+    name: mcagrp 
+    gid: 13700
+    state: present
+  tags: mcausr
+
+- name: add group "mcbgrp"
+  group: 
+    name: mcbgrp 
+    gid: 13800
+    state: present
+  tags: mcbusr
+
+- name: add group "mccgrp"
+  group: 
+    name: mccgrp 
+    gid: 13900
+    state: present
+  tags: mccusr
+
+- name: add group "mcdgrp"
+  group: 
+    name: mcdgrp 
+    gid: 14000
+    state: present
+  tags: mcdusr
+
+- name: add group "mcegrp"
+  group: 
+    name: mcegrp 
+    gid: 14100
+    state: present
+  tags: mceusr
+
+- name: add group "mcfgrp"
+  group: 
+    name: mcfgrp 
+    gid: 14200
+    state: present
+  tags: mcfusr
+
+- name: add group "teagrp"
+  group: 
+    name: teagrp 
+    gid: 14300
+    state: present
+  tags: teausr
+
+- name: add group "tiagrp"
+  group: 
+    name: tiagrp 
+    gid: 14400
+    state: present
+  tags: tiausr
+
+- name: add group "tbagrp"
+  group: 
+    name: tbagrp 
+    gid: 14500
+    state: present
+  tags: tbausr
+
+- name: add group "tsagrp"
+  group: 
+    name: tsagrp 
+    gid: 14600
+    state: present
+  tags: tsausr
+  
+- name: add group "tsbgrp"
+  group: 
+    name: tsbgrp 
+    gid: 14700
+    state: present
+  tags: tsbusr
+
+- name: add group "tuagrp"
+  group: 
+    name: tuagrp 
+    gid: 14800
+    state: present
+  tags: tuausr
+
+- name: add group "tgagrp"
+  group: 
+    name: tgagrp 
+    gid: 14900
+    state: present
+  tags: tgausr
+
+# kbagrp user create
+- name: add user "kiwi"
+  user: 
+    name: kiwi
+    group: kbagrp
+    uid: 3002 
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /home/kiwi
+    createhome: yes
+  tags: kiwi
+
+# zenius user create
+- name: add user "zenius"
+  user: 
+    name: zenius
+    group: zenius
+    uid: 3100
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/zenius
+    createhome: yes
+  tags: zenius
+
+# appgrp user create
+- name: add user "api"
+  user: 
+    name: api
+    group: appgrp
+    uid: 4001 
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/api
+    createhome: yes
+  tags: api
+
+- name: add user "dapi"
+  user: 
+    name: dapi
+    group: appgrp
+    uid: 4002 
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dapi
+    createhome: yes
+  tags: dapi
+
+- name: add user "deai"
+  user: 
+    name: deai
+    group: appgrp
+    uid: 4003
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/deai
+    createhome: yes
+  tags: deai
+
+- name: add user "dfep"
+  user: 
+    name: dfep
+    group: appgrp
+    uid: 4004
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dfep
+    createhome: yes
+  tags: dfep
+
+
+- name: add user "dksign"
+  user: 
+    name: dksign
+    group: appgrp
+    uid: 4006
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dksign
+    createhome: yes
+  tags: dksign
+
+- name: add user "dmci"
+  user: 
+    name: dmci
+    group: appgrp
+    uid: 4007
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dmci
+    createhome: yes
+  tags: dmci
+
+- name: add user "dndm"
+  user: 
+    name: dndm
+    group: appgrp
+    uid: 4009
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dndm
+    createhome: yes
+  tags: dndm
+  
+- name: add user "drclips"
+  user: 
+    name: drclips
+    group: appgrp
+    uid: 4010
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/drclips
+    createhome: yes
+  tags: drclips
+
+- name: add user "dubiform"
+  user: 
+    name: dubiform
+    group: appgrp
+    uid: 4011
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dubiform
+    createhome: yes
+  tags: dubiform
+
+- name: add user "dwebtop"
+  user: 
+    name: dwebtop
+    group: appgrp
+    uid: 4012
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dwebtop
+    createhome: yes
+  tags: dwebtop
+
+- name: add user "eai"
+  user: 
+    name: eai
+    group: appgrp
+    uid: 4013
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/eai
+    createhome: yes
+  tags: eai
+
+- name: add user "ecmusr"
+  user: 
+    name: ecmusr
+    group: appgrp
+    uid: 4014
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ecmusr
+    createhome: yes
+  tags: ecmusr
+
+- name: add user "eims"
+  user: 
+    name: eims
+    group: appgrp
+    uid: 4015
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/eims
+    createhome: yes
+  tags: eims
+
+- name: add user "fep"
+  user: 
+    name: fep
+    group: appgrp
+    uid: 4016
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/fep
+    createhome: yes
+  tags: fep
+
+- name: add user "igagent"
+  user: 
+    name: igagent
+    group: appgrp
+    uid: 4018
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/igagent
+    createhome: yes
+  tags: igagent
+
+- name: add user "ksign"
+  user: 
+    name: ksign
+    group: appgrp
+    uid: 4019
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ksign
+    createhome: yes
+  tags: ksign
+
+- name: add user "mci"
+  user: 
+    name: mci
+    group: appgrp
+    uid: 4020
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mci
+    createhome: yes
+  tags: mci
+
+- name: add user "ndm"
+  user: 
+    name: ndm
+    group: appgrp
+    uid: 4022
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ndm
+    createhome: yes
+  tags: ndm
+
+- name: add user "rclips"
+  user: 
+    name: rclips
+    group: appgrp
+    uid: 4023
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/rclips
+    createhome: yes
+  tags: rclips
+
+- name: add user "ubiform"
+  user: 
+    name: ubiform
+    group: appgrp
+    uid: 4025
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ubiform
+    createhome: yes
+  tags: ubiform
+
+- name: add user "webtop"
+  user: 
+    name: webtop
+    group: appgrp
+    uid: 4026
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/webtop
+    createhome: yes
+  tags: webtop
+
+- name: add user "x8byte"
+  user: 
+    name: x8byte
+    group: appgrp
+    uid: 4027
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/x8byte
+    createhome: yes
+  tags: x8byte
+
+- name: add user "docradm"
+  user: 
+    name: docradm
+    group: appgrp
+    uid: 4028
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/docradm
+    createhome: yes
+  tags: docradm
+
+- name: add user "ocradm"
+  user: 
+    name: ocradm
+    group: appgrp
+    uid: 4029
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ocradm
+    createhome: yes
+  tags: ocradm
+
+- name: add user "decmusr"
+  user: 
+    name: decmusr
+    group: appgrp
+    uid: 4030
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/decmusr
+    createhome: yes
+  tags: decmusr
+
+- name: add user "tstream"
+  user: 
+    name: tstream
+    group: appgrp
+    uid: 4031
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tstream
+    createhome: yes
+  tags: tstream
+
+- name: add user "intfadm"
+  user: 
+    name: intfadm
+    group: appgrp
+    uid: 4032
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/intfadm
+    createhome: yes
+  tags: intfadm
+
+- name: add user "deaiagnt"
+  user: 
+    name: deaiagnt
+    group: appgrp
+    uid: 4033
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/deaiagnt
+    createhome: yes
+  tags: deaiagnt
+
+- name: add user "eaiagnt"
+  user: 
+    name: eaiagnt
+    group: appgrp
+    uid: 4034
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/eaiagnt
+    createhome: yes
+  tags: eaiagnt
+
+- name: add user "itsmadm"
+  user: 
+    name: itsmadm
+    group: appgrp
+    uid: 4035
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/itsmadm
+    createhome: yes
+  tags: itsmadm
+
+- name: add user "jobmind"
+  user: 
+    name: jobmind
+    group: appgrp
+    uid: 4038
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/jobmind
+    createhome: yes
+  tags: jobmind
+
+- name: add user "djobmind"
+  user: 
+    name: djobmind
+    group: appgrp
+    uid: 4039
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/djobmind
+    createhome: yes
+  tags: djobmind
+
+- name: add user "tjobmind"
+  user: 
+    name: tjobmind
+    group: appgrp
+    uid: 4040
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tjobmind
+    createhome: yes
+  tags: tjobmind
+
+- name: add user "dumsadm"
+  user: 
+    name: dumsadm
+    group: appgrp
+    uid: 4041
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dumsadm
+    createhome: yes
+  tags: dumsadm
+
+- name: add user "umsadm"
+  user: 
+    name: umsadm
+    group: appgrp
+    uid: 4042
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/umsadm
+    createhome: yes
+  tags: umsadm
+
+- name: add user "dkms"
+  user: 
+    name: dkms
+    group: appgrp
+    uid: 4043
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dkms
+    createhome: yes
+  tags: dkms
+
+- name: add user "datagen"
+  user: 
+    name: datagen
+    group: appgrp
+    uid: 4044
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/datagen
+    createhome: yes
+  tags: datagen
+
+- name: add user "msgadm"
+  user: 
+    name: msgadm
+    group: appgrp
+    uid: 4045
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/msgadm
+    createhome: yes
+  tags: msgadm
+
+- name: add user "demladm"
+  user: 
+    name: demladm
+    group: appgrp
+    uid: 4046
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/demladm
+    createhome: yes
+  tags: demladm
+
+- name: add user "emladm"
+  user: 
+    name: emladm
+    group: appgrp
+    uid: 4047
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/emladm
+    createhome: yes
+  tags: emladm
+
+- name: add user "dsatadm"
+  user: 
+    name: dsatadm
+    group: appgrp
+    uid: 4048
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dsatadm
+    createhome: yes
+  tags: dsatadm
+
+- name: add user "satadm"
+  user: 
+    name: satadm
+    group: appgrp
+    uid: 4049
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/satadm
+    createhome: yes
+  tags: satadm
+
+# gateway user create
+- name: add user "gateway"
+  user: 
+    name: gateway
+    group: gateway
+    uid: 4050
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/gateway
+    createhome: yes
+  tags: gateway
+
+# layer7 user create
+- name: add user "layer7"
+  user: 
+    name: layer7
+    group: layer7
+    uid: 4051
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/layer7
+    createhome: yes
+  tags: layer7
+
+# interezen user create
+- name: add user "interezen"
+  user: 
+    name: interezen
+    group: interezen
+    uid: 4052
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/interezen
+    createhome: yes
+  tags: interezen
+
+# koryo user create
+- name: add user "koryo"
+  user: 
+    name: koryo
+    group: koryo
+    uid: 4053
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/koryo
+    createhome: yes
+  tags: koryo
+
+# ecross user create
+- name: add user "ecross"
+  user: 
+    name: ecross
+    group: appgrp
+    uid: 4054
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ecross
+    createhome: yes
+  tags: ecross
+
+# nfcadm user create
+- name: add user "nfcadm"
+  user: 
+    name: nfcadm
+    group: appgrp
+    uid: 4055 
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/nfcadm
+    createhome: yes
+  tags: nfcadm
+
+# rsup user create
+- name: add user "rsup"
+  user: 
+    name: rsup
+    group: appgrp
+    uid: 4056 
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/rsup
+    createhome: yes
+  tags: rsup
+
+# dfsbadm user create
+- name: add user "dfsbadm"
+  user: 
+    name: dfsbadm
+    group: appgrp
+    uid: 4057
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dfsbadm
+    createhome: yes
+  tags: dfsbadm
+
+# fsbadm user create
+- name: add user "fsbadm"
+  user: 
+    name: fsbadm
+    group: appgrp
+    uid: 4058
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/fsbadm
+    createhome: yes
+  tags: fsbadm
+
+# appsuit user create
+- name: add user "appsuit"
+  user: 
+    name: appsuit
+    group: appgrp
+    uid: 4059
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/appsuit
+    createhome: yes
+  tags: appsuit
+
+# nfast user create
+- name: add user "nfast"
+  user: 
+    name: nfast
+    group: nfast
+    uid: 4060
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/nfast
+    createhome: yes
+  tags: nfast
+
+# didrecog user create
+- name: add user "didrecog"
+  user: 
+    name: didrecog
+    group: appgrp
+    uid: 4061
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/didrecog
+    createhome: yes
+  tags: didrecog
+
+# idrecog user create
+- name: add user "idrecog"
+  user: 
+    name: idrecog
+    group: appgrp
+    uid: 4062
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/idrecog
+    createhome: yes
+  tags: idrecog
+
+  # dtchadm user create
+- name: add user "dtchadm"
+  user: 
+    name: dtchadm
+    group: appgrp
+    uid: 4063
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dtchadm
+    createhome: yes
+  tags: dtchadm
+
+  # tchadm user create
+- name: add user "tchadm"
+  user: 
+    name: tchadm
+    group: appgrp
+    uid: 4064
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tchadm
+    createhome: yes
+  tags: tchadm
+
+  # dxc30 user create
+- name: add user "dxc30"
+  user: 
+    name: dxc30
+    group: appgrp
+    uid: 4065
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dxc30
+    createhome: yes
+  tags: dxc30
+
+   # xc30 user create
+- name: add user "xc30"
+  user: 
+    name: xc30
+    group: appgrp
+    uid: 4066
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/xc30
+    createhome: yes
+  tags: xc30
+
+# bigeye : user create
+- name: add user "bigeye"
+  user: 
+    name: bigeye
+    group: bigeye
+    uid: 4101
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bigeye
+    createhome: yes
+  tags: bigeye
+
+# dbagrp : user create
+- name: add user "dbadm"
+  user: 
+    name: dbadm
+    group: dbagrp
+    uid: 5001
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dbadm
+    createhome: yes
+  tags: dbadm
+
+- name: add user "dbgrid"
+  user: 
+    name: dbgrid
+    group: dbagrp
+    uid: 5002
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dbgrid
+    createhome: yes
+  tags: dbgrid
+
+- name: add user "dbsec"
+  user: 
+    name: dbsec
+    group: dbagrp
+    uid: 5003
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dbsec
+    createhome: yes
+  tags: dbsec
+
+- name: add user "ddbsec"
+  user: 
+    name: ddbsec
+    group: dbagrp
+    uid: 5004
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ddbsec
+    createhome: yes
+  tags: ddbsec
+
+- name: add user "xladm"
+  user: 
+    name: xladm
+    group: dbagrp
+    uid: 5005
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/xladm
+    createhome: yes
+  tags: xladm
+
+# postgres : user create
+- name: add user "postgres"
+  user: 
+    name: postgres
+    group: postgres
+    uid: 5006
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/postgres
+    createhome: yes
+  tags: postgres
+
+- name: add user "kms"
+  user: 
+    name: kms
+    group: postgres
+    uid: 5007
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/kms
+    createhome: yes
+  tags: kms
+
+- name: add user "dpostgres"
+  user: 
+    name: dpostgres
+    group: postgres
+    uid: 5008
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dpostgres
+    createhome: yes
+  tags: dpostgres
+
+- name: add user "dtsadm"
+  user: 
+    name: dtsadm
+    group: dbagrp
+    uid: 5009
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dtsadm
+    createhome: yes
+  tags: dtsadm
+
+- name: add user "spmon"
+  user: 
+    name: spmon
+    group: dbagrp
+    uid: 5010
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/spmon
+    createhome: yes
+  tags: spmon
+
+- name: add user "tsadm"
+  user: 
+    name: tsadm
+    group: dbagrp
+    uid: 5012
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tsadm
+    createhome: yes
+  tags: tsadm
+
+- name: add user "mysql"
+  user: 
+    name: mysql
+    group: dbagrp
+    uid: 5013
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mysql
+    createhome: yes
+  tags: mysql
+
+# enterprisedb : user create
+- name: add user "enterprisedb"
+  user: 
+    name: enterprisedb
+    group: enterprisedb
+    uid: 5101
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/enterprisedb
+    createhome: yes
+  tags: enterprisedb
+
+# wasgrp : create user
+- name: add user "dwasadm"
+  user: 
+    name: dwasadm
+    group: wasgrp
+    uid: 6001
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dwasadm
+    createhome: yes
+  tags: dwasadm
+
+- name: add user "dwebadm"
+  user: 
+    name: dwebadm
+    group: wasgrp
+    uid: 6002
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dwebadm
+    createhome: yes
+  tags: dwebadm
+
+- name: add user "wasadm"
+  user: 
+    name: wasadm
+    group: wasgrp
+    uid: 6003
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/wasadm
+    createhome: yes
+  tags: wasadm
+
+- name: add user "webadm"
+  user: 
+    name: webadm
+    group: wasgrp
+    uid: 6004
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/webadm
+    createhome: yes
+  tags: webadm
+
+- name: add user "dfwkadm"
+  user: 
+    name: dfwkadm
+    group: wasgrp
+    uid: 6005
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dfwkadm
+    createhome: yes
+  tags: dfwkadm
+
+- name: add user "fwkadm"
+  user: 
+    name: fwkadm
+    group: wasgrp
+    uid: 6006
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/fwkadm
+    createhome: yes
+  tags: fwkadm
+
+- name: add user "proworks"
+  user: 
+    name: proworks
+    group: wasgrp
+    uid: 6007
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/proworks
+    createhome: yes
+  tags: proworks
+  
+- name: add user "dnaon"
+  user: 
+    name: dnaon
+    group: wasgrp
+    uid: 6008
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/dnaon
+    createhome: yes
+  tags: dnaon
+
+- name: add user "naon"
+  user: 
+    name: naon
+    group: wasgrp
+    uid: 6009
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/naon
+    createhome: yes
+  tags: naon
+
+- name: add user "asta"
+  user: 
+    name: asta
+    group: wasgrp
+    uid: 6010
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/asta
+    createhome: yes
+  tags: asta
+
+- name: add user "ecams"
+  user: 
+    name: ecams
+    group: wasgrp
+    uid: 6011
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ecams
+    createhome: yes
+  tags: ecams
+
+- name: add user "erwin"
+  user: 
+    name: erwin
+    group: wasgrp
+    uid: 6012
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/erwin
+    createhome: yes
+  tags: erwin
+
+- name: add user "smeta"
+  user: 
+    name: smeta
+    group: wasgrp
+    uid: 6013
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/smeta
+    createhome: yes
+  tags: smeta
+
+- name: add user "sdq"
+  user: 
+    name: sdq
+    group: wasgrp
+    uid: 6014
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/sdq
+    createhome: yes
+  tags: sdq
+
+- name: add user "sfwas"
+  user: 
+    name: sfwas
+    group: wasgrp
+    uid: 6015
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/sfwas
+    createhome: yes
+  tags: sfwas
+
+- name: add user "ecmadm"
+  user: 
+    name: ecmadm
+    group: wasgrp
+    uid: 6016
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ecmadm
+    createhome: yes
+  tags: ecmadm
+
+- name: add user "apmadm"
+  user: 
+    name: apmadm
+    group: wasgrp
+    uid: 6017
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/apmadm
+    createhome: yes
+  tags: apmadm
+
+- name: add user "drteadm"
+  user: 
+    name: drteadm
+    group: wasgrp
+    uid: 6018
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/drteadm
+    createhome: yes
+  tags: drteadm
+
+- name: add user "rteadm"
+  user: 
+    name: rteadm
+    group: wasgrp
+    uid: 6019
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/rteadm
+    createhome: yes
+  tags: rteadm
+
+- name: add user "e2eadm"
+  user: 
+    name: e2eadm
+    group: wasgrp
+    groups: dbagrp
+    uid: 6020
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/e2eadm
+    createhome: yes
+  tags: e2eadm
+
+
+# secgrp : create user
+- name: add user "search"
+  user: 
+    name: search
+    group: secgrp
+    uid: 7100
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/search
+    createhome: yes
+  tags: search
+
+- name: add user "easycerti"
+  user: 
+    name: easycerti
+    group: secgrp
+    uid: 7003
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/easycerti
+    createhome: yes
+  tags: easycerti
+
+- name: add user "docusec"
+  user: 
+    name: docusec
+    group: secgrp
+    uid: 7004
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/docusec
+    createhome: yes
+  tags: docusec
+
+- name: add user "sgadmin"
+  user: 
+    name: sgadmin
+    group: secgrp
+    uid: 7005
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/sgadmin
+    createhome: yes
+  tags: sgadmin
+
+- name: add user "pmwas"
+  user: 
+    name: pmwas
+    group: secgrp
+    uid: 7006
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/pmwas
+    createhome: yes
+  tags: pmwas
+
+- name: add user "svrfilter"
+  user: 
+    name: svrfilter
+    group: secgrp
+    uid: 7007
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/svrfilter
+    createhome: yes
+  tags: svrfilter
+
+##############################################################
+# ccagrp : create user
+- name: add user "ccausr"
+  user: 
+    name: ccausr
+    group: ccagrp
+    uid: 10101
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ccausr
+    createhome: yes
+  tags: ccausr
+  
+# ccbgrp : create user
+- name: add user "ccbusr"
+  user: 
+    name: ccbusr
+    group: ccbgrp
+    uid: 10201
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ccbusr
+    createhome: yes
+  tags: ccbusr
+
+# cccgrp : create user
+- name: add user "cccusr"
+  user: 
+    name: cccusr
+    group: cccgrp
+    uid: 10301
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/cccusr
+    createhome: yes
+  tags: cccusr
+
+# coagrp : create user
+- name: add user "coausr"
+  user: 
+    name: coausr
+    group: coagrp
+    uid: 10401
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/coausr
+    createhome: yes
+  tags: coausr
+
+# cobgrp : create user
+- name: add user "cobusr"
+  user: 
+    name: cobusr
+    group: cobgrp
+    uid: 10501
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/cobusr
+    createhome: yes
+  tags: cobusr
+
+# cocgrp : create user
+- name: add user "cocusr"
+  user: 
+    name: cocusr
+    group: cocgrp
+    uid: 10601
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/cocusr
+    createhome: yes
+  tags: cocusr
+
+# csagrp : create user
+- name: add user "csausr"
+  user: 
+    name: csausr
+    group: csagrp
+    uid: 10701
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/csausr
+    createhome: yes
+  tags: csausr
+
+# hpagrp : create user
+- name: add user "hpausr"
+  user: 
+    name: hpausr
+    group: hpagrp
+    uid: 10801
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/hpausr
+    createhome: yes
+  tags: hpausr
+
+# hpbgrp : create user
+- name: add user "hpbusr"
+  user: 
+    name: hpbusr
+    group: hpbgrp
+    uid: 10901
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/hpbusr
+    createhome: yes
+  tags: hpbusr
+
+# hragrp : create user
+- name: add user "hrausr"
+  user: 
+    name: hrausr
+    group: hragrp
+    uid: 11001
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/hrausr
+    createhome: yes
+  tags: hrausr
+
+# hrbgrp : create user
+- name: add user "hrbusr"
+  user: 
+    name: hrbusr
+    group: hrbgrp
+    uid: 11101
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/hrbusr
+    createhome: yes
+  tags: hrbusr
+
+# hrcgrp : create user
+- name: add user "hrcusr"
+  user: 
+    name: hrcusr
+    group: hrcgrp
+    uid: 11201
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/hrcusr
+    createhome: yes
+  tags: hrcusr
+
+# bcagrp : create user
+- name: add user "bcausr"
+  user: 
+    name: bcausr
+    group: bcagrp
+    uid: 11301
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bcausr
+    createhome: yes
+  tags: bcausr
+
+# bcbgrp : create user
+- name: add user "bcbusr"
+  user: 
+    name: bcbusr
+    group: bcbgrp
+    uid: 11401
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bcbusr
+    createhome: yes
+  tags: bcbusr
+
+# bccgrp : create user
+- name: add user "bccusr"
+  user: 
+    name: bccusr
+    group: bccgrp
+    uid: 11501
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bccusr
+    createhome: yes
+  tags: bccusr
+
+# bcdgrp : create user
+- name: add user "bcdusr"
+  user: 
+    name: bcdusr
+    group: bcdgrp
+    uid: 11601
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bcdusr
+    createhome: yes
+  tags: bcdusr
+
+# bcegrp : create user
+- name: add user "bceusr"
+  user: 
+    name: bceusr
+    group: bcegrp
+    uid: 11701
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bceusr
+    createhome: yes
+  tags: bceusr
+
+# bcfgrp : create user
+- name: add user "bcfusr"
+  user: 
+    name: bcfusr
+    group: bcfgrp
+    uid: 11801
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bcfusr
+    createhome: yes
+  tags: bcfusr
+
+# bcggrp : create user
+- name: add user "bcgusr"
+  user: 
+    name: bcgusr
+    group: bcggrp
+    uid: 11901
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bcgusr
+    createhome: yes
+  tags: bcgusr
+
+# bchgrp : create user
+- name: add user "bchusr"
+  user: 
+    name: bchusr
+    group: bchgrp
+    uid: 12001
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bchusr
+    createhome: yes
+  tags: bchusr
+
+# bcigrp : create user
+- name: add user "bciusr"
+  user: 
+    name: bciusr
+    group: bcigrp
+    uid: 12101
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bciusr
+    createhome: yes
+  tags: bciusr
+
+# bcjgrp : create user
+- name: add user "bcjusr"
+  user: 
+    name: bcjusr
+    group: bcjgrp
+    uid: 12201
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/bcjusr
+    createhome: yes
+  tags: bcjusr
+
+# idagrp : create user
+- name: add user "idausr"
+  user: 
+    name: idausr
+    group: idagrp
+    uid: 12301
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/idausr
+    createhome: yes
+  tags: idausr
+
+# idbgrp : create user
+- name: add user "idbusr"
+  user: 
+    name: idbusr
+    group: idbgrp
+    uid: 12401
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/idbusr
+    createhome: yes
+  tags: idbusr
+
+# idcgrp : create user
+- name: add user "idcusr"
+  user: 
+    name: idcusr
+    group: idcgrp
+    uid: 12501
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/idcusr
+    createhome: yes
+  tags: idcusr
+
+# iddgrp : create user
+- name: add user "iddusr"
+  user: 
+    name: iddusr
+    group: iddgrp
+    uid: 12601
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/iddusr
+    createhome: yes
+  tags: iddusr
+
+# idegrp : create user
+- name: add user "ideusr"
+  user: 
+    name: ideusr
+    group: idegrp
+    uid: 12701
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/ideusr
+    createhome: yes
+  tags: ideusr
+
+# idfgrp : create user
+- name: add user "idfusr"
+  user: 
+    name: idfusr
+    group: idfgrp
+    uid: 12801
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/idfusr
+    createhome: yes
+  tags: idfusr
+
+# iiagrp : create user
+- name: add user "iiausr"
+  user: 
+    name: iiausr
+    group: iiagrp
+    uid: 12901
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/iiausr
+    createhome: yes
+  tags: iiausr
+
+# iibgrp : create user
+- name: add user "iibusr"
+  user: 
+    name: iibusr
+    group: iibgrp
+    uid: 13001
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/iibusr
+    createhome: yes
+  tags: iibusr
+
+# iicgrp : create user
+- name: add user "iicusr"
+  user: 
+    name: iicusr
+    group: iicgrp
+    uid: 13101
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/iicusr
+    createhome: yes
+  tags: iicusr
+
+# mbagrp : create user
+- name: add user "mbausr"
+  user: 
+    name: mbausr
+    group: mbagrp
+    uid: 13201
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mbausr
+    createhome: yes
+  tags: mbausr
+
+# mbbgrp : create user
+- name: add user "mbbusr"
+  user: 
+    name: mbbusr
+    group: mbbgrp
+    uid: 13301
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mbbusr
+    createhome: yes
+  tags: mbbusr
+
+# mbcgrp : create user
+- name: add user "mbcusr"
+  user: 
+    name: mbcusr
+    group: mbcgrp
+    uid: 13401
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mbcusr
+    createhome: yes
+  tags: mbcusr
+
+# mragrp : create user
+- name: add user "mrausr"
+  user: 
+    name: mrausr
+    group: mragrp
+    uid: 13501
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mrausr
+    createhome: yes
+  tags: mrausr
+
+# mrbgrp : create user
+- name: add user "mrbusr"
+  user: 
+    name: mrbusr
+    group: mrbgrp
+    uid: 13601
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mrbusr
+    createhome: yes
+  tags: mrbusr
+
+# mcagrp : create user
+- name: add user "mcausr"
+  user: 
+    name: mcausr
+    group: mcagrp
+    uid: 13701
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mcausr
+    createhome: yes
+  tags: mcausr
+
+# mcbgrp : create user
+- name: add user "mcbusr"
+  user: 
+    name: mcbusr
+    group: mcbgrp
+    uid: 13801
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mcbusr
+    createhome: yes
+  tags: mcbusr
+
+# mccgrp : create user
+- name: add user "mccusr"
+  user: 
+    name: mccusr
+    group: mccgrp
+    uid: 13901
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mccusr
+    createhome: yes
+  tags: mccusr
+
+# mcdgrp : create user
+- name: add user "mcdusr"
+  user: 
+    name: mcdusr
+    group: mcdgrp
+    uid: 14001
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mcdusr
+    createhome: yes
+  tags: mcdusr
+
+# mcegrp : create user
+- name: add user "mceusr"
+  user: 
+    name: mceusr
+    group: mcegrp
+    uid: 14101
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mceusr
+    createhome: yes
+  tags: mceusr
+
+# mcfgrp : create user
+- name: add user "mcfusr"
+  user: 
+    name: mcfusr
+    group: mcfgrp
+    uid: 14201
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/mcfusr
+    createhome: yes
+  tags: mcfusr
+
+# teagrp : create user
+- name: add user "teausr"
+  user: 
+    name: teausr
+    group: teagrp
+    uid: 14301
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/teausr
+    createhome: yes
+  tags: teausr
+
+# tiagrp : create user
+- name: add user "tiausr"
+  user: 
+    name: tiausr
+    group: tiagrp
+    uid: 14401
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tiausr
+    createhome: yes
+  tags: tiausr
+
+# tbagrp : create user
+- name: add user "tbausr"
+  user: 
+    name: tbausr
+    group: tbagrp
+    uid: 14501
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tbausr
+    createhome: yes
+  tags: tbausr
+
+# tsagrp : create user
+- name: add user "tsausr"
+  user: 
+    name: tsausr
+    group: tsagrp
+    uid: 14601
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tsausr
+    createhome: yes
+  tags: tsausr
+
+# tsbgrp : create user
+- name: add user "tsbusr"
+  user: 
+    name: tsbusr
+    group: tsbgrp
+    uid: 14701
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tsbusr
+    createhome: yes
+  tags: tsbusr
+
+# tuagrp : create user
+- name: add user "tuausr"
+  user: 
+    name: tuausr
+    group: tuagrp
+    uid: 14801
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tuausr
+    createhome: yes
+  tags: tuausr
+
+# tgagrp : create user
+- name: add user "tgausr"
+  user: 
+    name: tgausr
+    group: tgagrp
+    uid: 14901
+    state: present 
+    password: "{{ ( init_passwd ) | password_hash('sha512') }}"
+    shell: /bin/bash 
+    home: /fshome/tgausr
+    createhome: yes
+  tags: tgausr

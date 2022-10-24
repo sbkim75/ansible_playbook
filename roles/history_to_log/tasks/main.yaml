@@ -1,0 +1,42 @@
+- name: "/etc/bashrc : remove history config"
+  lineinfile:
+    path: /etc/bashrc
+    state: absent
+    line: '{{ item }}'
+  with_items:
+    - "export HISTTIMEFORMAT='%F %T '"
+    - 'export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"'
+    - 'shopt -s histappend'
+
+- name: "/etc/bashrc : add history to log config"
+  lineinfile:
+    path: /etc/bashrc
+    state: present
+    line: '{{ item }}'
+  with_items:
+    - "IP=`who am i |awk '{print $5}'| sed 's/(//g' | sed 's/)//g'`"
+    - 'function history_to_syslog'
+    - '{'
+    - '       declare cmd'
+    - '       cmd=$(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//")'
+    - '       if [ "$cmd" != "$old_command" ]'
+    - '       then'
+    - '          logger -p local6.debug "$USER@$IP : ${cmd}"'
+    - '       fi'
+    - '       old_command=$cmd'
+    - '}'
+    - 'trap history_to_syslog DEBUG || EXIT'
+    - '######## End history config ########'
+
+- name: "copy /etc/rsyslog.d/history.conf"
+  copy:
+    src: history.conf
+    dest: /etc/rsyslog.d/history.conf
+    mode: '0644'
+    owner: root
+    group: root 
+
+- name: "rsyslogd servie restart"
+  service:
+    name: rsyslog.service
+    state: restarted

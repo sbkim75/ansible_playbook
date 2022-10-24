@@ -1,0 +1,48 @@
+- name: copy atop rpm  
+  copy:
+    src: atop-2.7.1-1.el8.x86_64.rpm
+    dest: /tmp/
+    mode: '0750'
+    owner: root
+    group: root
+  when:
+    - (ansible_distribution == "RedHat")
+    - (ansible_distribution_major_version == "8")
+
+- name: install atop rpm 
+  yum:
+    name: /tmp/atop-2.7.1-1.el8.x86_64.rpm
+    state: present
+    validate_certs: no
+    disable_gpg_check: yes
+  when:
+    - (ansible_distribution == "RedHat")
+    - (ansible_distribution_major_version == "8")
+
+- name: copy netatop kernel module  
+  unarchive:
+    src: netatop-3.1.tar
+    dest: /tmp/
+    mode: '0750'
+    owner: root
+    group: root
+  when:
+    - (ansible_distribution == "RedHat")
+    - (ansible_distribution_major_version == "8")
+
+- name: install make 
+  yum:
+    name: make
+    state: present
+  when:
+    - (ansible_distribution == "RedHat")
+    - (ansible_distribution_major_version == "8")
+
+- name: netatop instsall
+  shell:
+    cmd: |
+        cd /tmp/netatop-3.1
+        make install
+  when:
+    - (ansible_distribution == "RedHat")
+    - (ansible_distribution_major_version == "8")

@@ -1,0 +1,56 @@
+---
+- hosts: all
+#  vars:
+#    - SRC_DIR: /fssol/tst
+#    - DST_DIR: /fssol
+#    - TARGET_HOST: ta-test01
+
+  tasks:
+    - name: "Archive Source dir"
+      shell: |
+        cd "{{ SRC_DIR }}"
+        echo "tar cvfz /tmp/$(pwd |awk -F/ '{print $NF}').tar ."|sh -x
+      ignore_errors: yes
+
+    - name: "File Name register"
+      shell: |
+        cd "{{ SRC_DIR }}"
+        echo "$(pwd |awk -F/ '{print $NF}').tar"
+      register: SRC_FILE_NAME
+
+    - name: "Copy to local "
+      shell: |
+        scp auditor@"{{ ansible_hostname }}":/tmp/{{ SRC_FILE_NAME.stdout }} /mnt/d/tmp
+      run_once: yes
+      delegate_to: localhost
+#      remote_user: root
+#      become: no
+
+    - name: "Delete Remote Archive File"
+      file:
+        path: /tmp/{{ SRC_FILE_NAME.stdout }}
+        state: absent
+
+    - name: "Make Target Directory"
+      file: 
+        path: "{{ DST_DIR }}"
+        state: directory
+        recurse: yes
+        owner: root
+        group: root
+      delegate_to: '{{ item }}'
+      with_items: "{{ TARGET_HOST.split('\n') }}"
+
+    - name: "Unarchive Source dir"
+      unarchive: 
+        src: /mnt/d/tmp/{{ SRC_FILE_NAME.stdout }}
+        dest: "{{ DST_DIR }}"
+      delegate_to: '{{ item }}'
+      with_items: "{{ TARGET_HOST.split('\n') }}"
+
+    - name: "Delete local Files"
+      shell: |
+        rm -f /mnt/d/tmp/{{ SRC_FILE_NAME.stdout }}  
+      run_once: yes
+      delegate_to: localhost
+#      become: no
