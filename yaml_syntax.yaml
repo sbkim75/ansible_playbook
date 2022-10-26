@@ -24,3 +24,21 @@ yaml_list1:
 - value2
 
 yaml_list2: [value1, value2]
+
+
+## Ad-Hoc Command
+ansible {hosts} -a "command"
+
+# yum package install 
+# -b (become), -m (moudule), -a (argument)
+ansible {hosts} -b -m yum -a "name=ntp stat=present"
+
+# Copy a file to the servers
+ansible {hosts} -m copy -a "src=/etc/hosts dest=/tmp/hosts"
+
+# Fetch a file from the servers
+ansible {hosts} -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
+
+# Create/Delete directory and files
+ansible {hosts} -m file -a "dest=/tmp/test mode=755 state=directory"
+ansible {hosts} -m file -a "dest=/tmp/test state=absent"
