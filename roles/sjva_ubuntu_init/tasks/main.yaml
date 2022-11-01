@@ -1,0 +1,22 @@
+- name: "Kernel Parameter 설정: /etc/sysctl.conf"
+  lineinfile:
+    path: /etc/sysctl.conf
+    state: present
+    insertafter: 'EOF'
+    line: '{{ item }}'
+  with_items:
+    - '### BBR 적용'
+    - 'net.core.default_qdisc=fq'
+    - 'net.ipv4.tcp_congestion_control=bbr'
+    - ''
+    - '### somaxconn'
+    - 'net.core.somaxconn = 65535'
+    - ''
+    - '### tcp_max_syn_backlog'
+    - 'net.ipv4.tcp_max_syn_backlog = 30000'
+    - ''
+    - '### tcp_syncookies'
+    - 'net.ipv4.tcp_syncookies = 1'
+    - ''
+    - '### netdev_max_backlog'
+    - 'net.core.netdev_max_backlog = 5000'
