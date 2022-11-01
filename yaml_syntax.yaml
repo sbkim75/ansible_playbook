@@ -27,7 +27,7 @@ yaml_list2: [value1, value2]
 
 
 ## Ad-Hoc Command
-ansible {hosts} -a "command"
+ansible [pattern] -m [module] -a "[module options]"
 
 # yum package install 
 # -b (become), -m (moudule), -a (argument)
