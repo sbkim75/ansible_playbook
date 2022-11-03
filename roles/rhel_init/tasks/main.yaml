@@ -182,7 +182,7 @@
     owner: root
     group: root 
 
-- name: "cockpit servie start/enable"
+- name: "cockpit service start/enable"
   service:
     name: cockpit.socket
     state: started

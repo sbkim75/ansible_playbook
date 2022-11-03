@@ -53,6 +53,7 @@
     - tree
     - bmon
     - tzdata
+    - iptables-persistent
 
 - name: "set timezone to Asia/Seoul"
   timezone: name=Asia/Seoul
@@ -70,3 +71,34 @@
     state: restarted
     daemon_reload: yes
     name: systemd-timesyncd.service
+
+- name: rclone install
+  shell: |
+    curl -fsSL https://raw.githubusercontent.com/wiserain/rclone/mod/install.sh | sudo bash 
+    mkdir -p /mnt/gds /mnt/gds_cache /mnt/gds_write /mnt/sjva /mnt/sjva_cache
+
+- name: rclone config file copy
+  copy:
+    src: rclone.conf
+    dest: /root/.config/rclone/rclone.conf
+    mode: '0600'
+    owner: root
+    group: root 
+
+- name: gds service file copy
+  copy:
+    src: gds_rclone.service
+    dest: /etc/systemd/system/gds_rclone.service
+    mode: '0644'
+    owner: root
+    group: root
+
+- name: systemctl daemon-reload
+  shell: |
+    systemctl daemon-reload
+
+- name: "gds_rclone service start/enable"
+  service:
+    name: gds_rclone.service
+    state: started
+    enabled: yes

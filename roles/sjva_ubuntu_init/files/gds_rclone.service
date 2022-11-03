@@ -1,0 +1,47 @@
+# /etc/systemd/system/gds_rclone.service
+[Unit]
+Description= rclone(gds)
+AssertPathIsDirectory=/mnt/gds
+After=network.target network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount uni: /mnt/gds \
+  --config /root/.config/rclone/rclone.conf \
+  --allow-non-empty \
+  --allow-other \
+  --buffer-size=16M \
+  --bwlimit-file 16M \
+  --cache-chunk-path=/mnt/gds_cache \
+  --cache-db-path=/mnt/gds_cache \
+  --cache-dir=/mnt/gds_cache \
+  --dir-cache-time=2880h \
+  --drive-gds-mode=all \
+  --drive-skip-gdocs \
+  --fast-list \
+  --filter-from /docker/sjva3/data/rclone/gds-filter.txt \
+  --ignore-case \
+  --log-level INFO \
+  --no-checksum \
+  --no-modtime \
+  --poll-interval=0 \
+  --rc \
+  --rc-addr 0.0.0.0:5574 \
+  --rc-user=sjva \
+  --rc-pass=sjva \
+  --read-only \
+  --use-mmap \
+  --vfs-cache-max-age 2880h \
+  --vfs-cache-max-size 80G \
+  --vfs-cache-mode full \
+  --vfs-cache-poll-interval=5m \
+  --vfs-read-ahead 128 \
+  --vfs-read-chunk-size-limit 2048M \
+  --vfs-read-chunk-size=128M \
+  --log-file=/root/rclone/log/gds.log
+
+ExecStop=/bin/fusermount -u /mnt/gds
+Restart=no
+
+[Install]
+WantedBy=default.target
