@@ -7,6 +7,15 @@ sbplex  ansible_host=152.70.242.208     ansible_port=10022      ansible_user=ans
 ftw     ansible_host=130.162.134.12     ansible_port=22 ansible_user=ansible
 
 [ubuntu]
+ubuntu-00       ansible_host=192.168.55.110     ansible_port=22 ansible_user=ansible
+ubuntu-01       ansible_host=192.168.55.111     ansible_port=22 ansible_user=ansible
+ubuntu-02       ansible_host=192.168.55.112     ansible_port=22 ansible_user=ansible
+ubuntu-03       ansible_host=192.168.55.113     ansible_port=22 ansible_user=ansible
+
+[kubem]
+ubuntu-00       ansible_host=192.168.55.110     ansible_port=22 ansible_user=ansible
+
+[kuben]
 ubuntu-01       ansible_host=192.168.55.111     ansible_port=22 ansible_user=ansible
 ubuntu-02       ansible_host=192.168.55.112     ansible_port=22 ansible_user=ansible
 ubuntu-03       ansible_host=192.168.55.113     ansible_port=22 ansible_user=ansible
